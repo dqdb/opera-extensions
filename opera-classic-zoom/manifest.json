@@ -2,7 +2,7 @@
 	"name": "Opera Classic Zoom",
 	"description": "Zoom web pages using the keyboard like in Opera 12",
 	"permissions": [ "tabs", "http://*/*", "https://*/*" ],
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"background": 
 	{
 		"persistent": true,

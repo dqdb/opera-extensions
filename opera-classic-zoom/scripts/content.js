@@ -1,3 +1,15 @@
+window.addEventListener("mousewheel", function(e)
+{
+	if (!e.ctrlKey)
+		return true;
+	
+	var action = e.wheelDelta > 0 ? "zoomIn" : e.wheelDelta < 0 ? "zoomOut" : null;
+	if (action != null)
+		chrome.runtime.sendMessage({ action: action });
+	e.preventDefault();
+	return false;
+});
+
 window.addEventListener("keydown", function(e)
 {
 	var action;
