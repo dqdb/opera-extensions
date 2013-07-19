@@ -1,0 +1,15 @@
+{
+   "background": {
+      "scripts": ["scripts/background.js"]
+   },
+   "description": "Removes Stash, Discovery and Google search bar from Speed Dial",
+   "icons": {
+      "128": "icons/icon128.png",
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+   },
+   "manifest_version": 2,
+   "name": "Speed Dial Simplifier",
+   "permissions": [ "tabs", "opera://*/*" ],
+   "version": "1.0.0"
+}
