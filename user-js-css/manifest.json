@@ -1,0 +1,23 @@
+{
+	"name": "User JS and CSS",
+	"description": "File-based user JS and user CSS support",
+	"icons": 
+	{
+		"128": "icons/icon128.png",
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png"
+	},
+	"content_scripts": 
+	[ 
+		{ 
+			"matches": [ "http://prohardver.hu/*" ], 
+			"css": [ "css/prohardver.css" ] 
+		},
+		{ 
+			"matches": [ "http://prohardver.hu/*", "http://mobilarena.hu/*", "http://itcafe.hu/*", "http://logout.hu/*" ], 
+			"js": [ "js/ph_1280_fix.js" ] 
+		} 
+	],
+	"manifest_version": 2,
+	"version": "1.1.0"
+}
