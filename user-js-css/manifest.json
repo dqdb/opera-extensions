@@ -9,14 +9,17 @@
 	},
 	"content_scripts": 
 	[ 
-		{ 
-			"matches": [ "http://prohardver.hu/*" ], 
-			"css": [ "css/prohardver.css" ] 
-		},
-		{ 
-			"matches": [ "http://prohardver.hu/*", "http://mobilarena.hu/*", "http://itcafe.hu/*", "http://logout.hu/*" ], 
-			"js": [ "js/ph_1280_fix.js" ] 
-		} 
+		// example user CSS
+		// { 
+		//	"matches": [ "http://example.com/*" ], 
+		//	"css": [ "css/example.css" ] 
+		//},
+		
+		// example user JS
+		//{ 
+		//	"matches": [ "http://example.com/*" ], 
+		//	"js": [ "js/example.js" ] 
+		//} 
 	],
 	"manifest_version": 2,
 	"version": "1.1.0"
