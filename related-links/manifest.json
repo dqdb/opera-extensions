@@ -1,0 +1,12 @@
+﻿ { 
+	"background": { "scripts": ["js/background.js"]  }, 
+ 	"permissions": [ "opera://*/", "tabs" ],
+	"content_scripts": [ { "matches" : ["opera://*/"], "css" : ["css/related.css"]}],
+	"icons": { "128": "icons/icon128.png", "16": "icons/icon16.png", "48": "icons/icon48.png" },
+ 		
+	"manifest_version": 2, 
+	"name": "Related Links", 
+	"description": "Adds related section to all internal Opera pages",
+	"version": "1.0.0" 
+}
+ 

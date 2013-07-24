@@ -1,0 +1,34 @@
+#relatedbar {
+  -webkit-border-end: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  border-radius: 12px 0 0 12px;
+  border: 1px solid rgb(198, 198, 198);
+  -webkit-border-end: none;
+  box-sizing: border-box;
+  color: rgb(73, 73, 73);
+  padding: 20px;
+  position: fixed;
+  width: 230px;
+}
+
+html[dir='rtl'] #relatedbar {
+  border-radius: 0 12px 12px 0;
+}
+
+#relatedbar h1 {
+  font-size: 18px;
+}
+
+.relatedbar-related a {
+  color: rgb(112, 112, 112);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.relatedbar-related a:hover {
+  color: black;
+}
+
