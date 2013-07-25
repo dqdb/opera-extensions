@@ -1,6 +1,3 @@
-if (localStorage.getItem("created-at") == null)
-	localStorage.setItem("created-at", new Date());
-
 function getUrlRef(url)
 {
 	return (localStorage.getItem("url-ref-" + url) || 0) * 1;
@@ -79,13 +76,6 @@ function setTabZoom(tabId, level)
 		sessionStorage.setItem("tab-zoom-" + tabId, level);
 }
 
-function updateTabZoom(tabId, oldLevel, newLevel, allFrames)
-{
-	var ratio = newLevel / oldLevel;
-	var code = "var offsetX = window.pageXOffset; var offsetY = window.pageYOffset; document.body.parentElement.style.zoom = " + (newLevel == 100 ? "null" : "'" + newLevel + "%'") + ";window.scrollTo(offsetX * " + ratio + ", offsetY * " + ratio + ");";
-	chrome.tabs.executeScript(tabId, { code: code, allFrames: allFrames, runAt: "document_end" } );
-}
-
 chrome.tabs.onCreated.addListener(function(tab)
 {
 	setTabZoom(tab.id, tab.openerTabId != null ? getTabZoom(tab.openerTabId) : 100);
@@ -98,35 +88,25 @@ chrome.tabs.onRemoved.addListener(function(tabId, info)
 		setTabUrl(tabId, null);
 });
 
-chrome.tabs.onUpdated.addListener(function(tabId, info, tab)
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) 
 {
-	var level = getTabZoom(tabId, true);
-	if (level == null)
+	console.log("tab: " + sender.tab.url);
+	var oldLevel = getTabZoom(sender.tab.id, true);
+		console.log("tab level: " + oldLevel);
+	if (oldLevel == null)
 	{
 		// tab restored from previous session
 		// try to use its url for lookup
-		level = getUrlZoom(tab.url);
-		if (level == null)
-			level = 100;
+		oldLevel = getUrlZoom(sender.tab.url);
+		console.log("url level: " + oldLevel);
+		if (oldLevel == null)
+			oldLevel = 100;
 		else
-			removeUrlRef(tab.url); // setTabUrlZoom will increase the reference counter back
-
-		setTabZoom(tabId, level);
+			removeUrlRef(sender.tab.url); // setTabUrlZoom will increase the reference counter back
+			
+		setTabZoom(sender.tab.id, oldLevel);
 	}
 	
-	level = level * 1;
-	setTabUrlZoom(tabId, tab.url, level);
-	
-	if (level != 100)
-	{
-		var isLoading = info.status == "loading";
-		updateTabZoom(tabId, isLoading ? 100 : level, level, !isLoading);
-	}
-});
-
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) 
-{
-	var oldLevel = getTabZoom(sender.tab.id);
 	var newLevel;
 	if (request.action == "zoomIn")
 		newLevel = oldLevel + 10;
@@ -138,6 +118,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
 		newLevel = oldLevel - 100;
 	else if (request.action == "zoomReset")
 		newLevel = 100;
+	else if (request.action == "zoomGet")
+		newLevel = oldLevel;
 	else
 		return;
 
@@ -147,11 +129,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
 		newLevel = 1000;
 	
 	if (newLevel != oldLevel)
-	{
 		setTabZoom(sender.tab.id, newLevel);
-		updateTabZoom(sender.tab.id, oldLevel, newLevel, true);
-	}
-	setTabUrlZoom(sender.tab.id, sender.tab.url, newLevel);
 	
-	sendResponse({ level: newLevel});
+	setTabUrlZoom(sender.tab.id, sender.tab.url, newLevel);
+	sendResponse({ level: newLevel, oldLevel: oldLevel });
 });

@@ -17,10 +17,14 @@ Hotkeys:
   *: restore zoom to 100%
 
 Known issues:
-* some embedded frames are not zoomed after page load
-* sometimes scrolling position is lost on page reload
+* embedded iframes are not zoomed after page load (I have no idea how to trick cross site frame policy)
+* zoom level is lost when reopening recently closed tabs
 * this extension uses CSS for zooming, it is not compatible with and related to the built-in zoom feature of Opera 15
 * it leaks some localStorage space when closing secondary browser windows
+
+Changes in version 1.2.0
+* completely new content script to modify zoom level at document_start (content is zoomed before displaying it)
+* renamed to Classic Zoom
 
 Changes in version 1.1.0
 * restore zoom level after Opera restart
