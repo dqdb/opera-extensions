@@ -90,15 +90,12 @@ chrome.tabs.onRemoved.addListener(function(tabId, info)
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) 
 {
-	console.log("tab: " + sender.tab.url);
 	var oldLevel = getTabZoom(sender.tab.id, true);
-		console.log("tab level: " + oldLevel);
 	if (oldLevel == null)
 	{
 		// tab restored from previous session
 		// try to use its url for lookup
 		oldLevel = getUrlZoom(sender.tab.url);
-		console.log("url level: " + oldLevel);
 		if (oldLevel == null)
 			oldLevel = 100;
 		else
