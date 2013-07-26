@@ -25,7 +25,8 @@ if (sidebar && !relatedbar)
 		
 		for (var n2 = 0; n2 < group.length; n2++)
 		{
-			if (group[n2].href == document.location.href)
+			var item = group[n2];
+			if (item.href == document.location.href.substr(0, item.href.length))
 			{
 				found = true;
 				break;
@@ -35,9 +36,11 @@ if (sidebar && !relatedbar)
 		if (!found)
 			continue;
 
+		sidebox = document.createElement("div");
+		sidebox.id = "sidebox";
+		
 		relatedbar = document.createElement("div");
 		relatedbar.id = "relatedbar";
-		relatedbar.style.marginTop = (sidebar.offsetTop + sidebar.offsetHeight + 30) + "px";
 		var title = document.createElement("h1");
 		relatedbar.appendChild(title);
 		title.innerText = "Related pages";
@@ -45,7 +48,7 @@ if (sidebar && !relatedbar)
 		for (var n2 = 0; n2 < group.length; n2++)
 		{
 			var item = group[n2];
-			if (item.url == document.location.href)
+			if (item.href == document.location.href.substr(0, item.href.length))
 				continue;
 
 			var div = document.createElement("div");
@@ -58,7 +61,10 @@ if (sidebar && !relatedbar)
 		
 		}
 
-		sidebar.parentNode.insertBefore(relatedbar, sidebar.nextSibling);
+		sidebar.style.position = "static";
+		sidebar.parentNode.insertBefore(sidebox, sidebar);
+		sidebox.appendChild(sidebar);
+		sidebox.appendChild(relatedbar);
 		break;
 	}
 	
