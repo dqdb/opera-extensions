@@ -120,8 +120,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
 	else
 		return;
 
-	if (newLevel < 10)
-		newLevel = 10;
+	if (newLevel < 20)
+		newLevel = 20;
 	else if (newLevel > 1000)
 		newLevel = 1000;
 	
