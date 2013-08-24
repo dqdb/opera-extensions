@@ -1,0 +1,20 @@
+{
+	"name": "Center Images",
+	"description": "Centers viewed images on screen",
+	"icons": 
+	{
+		"128": "icons/icon128.png",
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png"
+	},
+	"content_scripts": 
+	[ 
+		{ 
+			"matches": [ "http://*/*", "https://*/*" ], 
+			"js": [ "js/center.js" ],
+			"runAt": "document_end"
+		}
+	],
+	"manifest_version": 2,
+	"version": "1.0.0"
+}
