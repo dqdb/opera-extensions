@@ -1,0 +1,54 @@
+html {
+    height:100%;
+}
+
+body {
+    height:100%;
+}
+
+.remove {
+  float: right;
+  font-weight: bold;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+
+.remove:hover,
+.remove:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+
+tr.site-row,
+tr.shortcut-row {
+  cursor: pointer;
+}
+
+button.remove {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+
+table.table tr td button.remove { 
+  display: none;
+}
+
+table.table tr:hover td button.remove { 
+  display: inline-block;
+}
+
+.table td.span1pont5,
+.table th.span1pont5 {
+  float: none;
+  width: 84px;
+  margin-left: 0;
+}
+
