@@ -5,7 +5,13 @@
 	"version": "1.0.0",
 	"background": 
 	{
-		"scripts": [ "js/strings.js", "js/imagetags.js", "js/imageinfo.js", "js/background.js" ]
+		"scripts": 
+		[
+			"js/strings.js", "js/utils.js",
+			"js/bitmap.js", "js/gif.js", "js/jpeg.js", "js/png.js", "js/webp.js", "js/image.js", 
+			"js/exif.js", "js/exiftags.js", 
+			"js/background.js"
+		]
   	},
 	"content_scripts": 
 	[
@@ -20,5 +26,6 @@
 		"48": "icons/icon48.png",
 		"128": "icons/icon128.png"
 	},
+	"default_locale": "en",
 	"manifest_version": 2
 }

@@ -96,6 +96,14 @@ function getImage(image, callback)
 	}
 }
 
+function decodeImage(image, data)
+{
+	delete image.url;
+	ImageParser.parse(image, data);
+	alert(JSON.stringify(image));
+	console.log(image);
+}
+
 chrome.contextMenus.onClicked.addListener(function(info, tab) 
 {
 	var image = {};

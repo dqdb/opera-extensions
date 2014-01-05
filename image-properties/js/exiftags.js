@@ -1,12 +1,13 @@
 ﻿// Image Properties browser extension
 // copyright (c) 2014 dqdb
 
-// based on Exif 2.3 specification and ExifTool source code
+// based on Exif 2.3 specification and ExifTool source code (for clarification)
 
 // Why is the PDF file of the specification protected against 
 // copying text from it? What was the point of that? 
 
-var ImageTags = (function()
+// anonymous function to prevent namespace pollution
+var ExifTags = (function()
 {
 	var hidden = {};
 	var optional = {};
@@ -169,7 +170,7 @@ var ImageTags = (function()
 				{
 					required: required,
 					formatted: formatted,
-					name: arg
+					id: arg
 				}
 				tag.refs.push(ref);
 				required = true;
@@ -177,16 +178,16 @@ var ImageTags = (function()
 			}
 		}
 		return tag;
-	}
+	};
 
 	var composite = function(id)
 	{
 		var tag = simple.apply(null, arguments);
 		tag.composite = true;
 		return tag;
-	}
-
-	var imageTags =
+	};
+	
+	var tags =
 	{
 		Tiff:
 		{
@@ -225,7 +226,7 @@ var ImageTags = (function()
 					
 			// 0x012d: simple("TransferFunction"),
 			0x0131: simple("Software"),
-			0x0132: simple("DateTime"),
+			0x0132: simple("DateTime", optional, "Exif.SubSecTimeOriginal", formatDateTime),
 			0x013b: simple("Artist"),
 			// 0x013e: simple("WhitePoint"),
 			// 0x013f: simple("PrimaryChromaticities"),
@@ -344,7 +345,7 @@ var ImageTags = (function()
 			0x9203: simple("BrightnessValue"),
 			0x9204: simple("ExposureBiasValue", function(value)
 			{
-				return formatFraction(value.toDouble()) + " " + strings.EV;
+				return formatFraction(value.toDouble()) + " " + strings.ExifExposureValue;
 			}),
 			0x9205: simple("MaxApertureValue", function(value)
 			{
@@ -354,7 +355,7 @@ var ImageTags = (function()
 			0x9206: simple("SubjectDistance", function(value)
 			{
 				if (value.a == 0)
-					return strings.Unknown;
+					return strings.ExifUnknown;
 				else if (value.a == 0xffffffff)
 					return "∞";
 				else
@@ -433,24 +434,20 @@ var ImageTags = (function()
 			}),
 			// 0x9214: simple("SubjectArea"),
 			// 0x927c: simple("MakerNote"),
-			0x9286: simple("UserComment", function(value, tag, image, data, view, endian)
+			0x9286: simple("UserComment", function(value, item)
 			{
 				var comment = "";
 				if (value instanceof Uint8Array && value.length > 8)
 				{
 					var codepage = String.fromAscii(value, 0, 8);
 					if (codepage === "ASCII")
-					{
 						comment = String.fromAscii(value, 8);
-					}
 					else if (codepage === "UNICODE")
-					{
-						comment = String.fromUnicode(value, endian, 8);
-					}
+						comment = String.fromUnicode(value, item.endian, 8);
 				}
 				return comment || null;
 			}),
-			// 0x9290: simple("SubSecTime"), // program structore does not allow to use this value (
+			0x9290: simple("SubSecTime", hidden),
 			0x9291: simple("SubSecTimeOriginal", hidden),
 			0x9292: simple("SubSecTimeDigitized", hidden),
 			// 0xa000: simple("FlashpixVersion"),
@@ -744,5 +741,6 @@ var ImageTags = (function()
 		}
 	};
 	
-	return imageTags;
+	ExifParser.initialize(tags);
+	return tags;
 })();
