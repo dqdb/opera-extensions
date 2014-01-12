@@ -4,6 +4,11 @@
         "message": "Image properties"
     },
 
+    // general properties
+    "GeneralTitle": {
+        "message": "IMAGE PROPERTIES"
+    },
+
     // Exif string values
     "ExifExposureValue": {
         "message": "EV"

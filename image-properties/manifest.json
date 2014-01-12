@@ -1,7 +1,7 @@
 {
 	"name": "Image Properties",
 	"description": "Description",
-	"permissions": [ "contextMenus", "<all_urls>" ],
+	"permissions": [ "contextMenus", "activeTab", "<all_urls>" ],
 	"version": "1.0.0",
 	"background": 
 	{
@@ -20,6 +20,10 @@
       			"matches": [ "<all_urls>" ]
 		}
    	],
+   	"web_accessible_resources":
+   	[
+   		"css/modal.css"
+  	],
    	"icons":
    	{
 		"16": "icons/icon16.png",

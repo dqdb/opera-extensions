@@ -9,7 +9,7 @@ function updateMenuItem(url)
 {
 	var menuItem = 
 	{
-		title: strings.MenuItem, 
+		title: Strings.MenuItem, 
 		contexts: ["image"]
 	};
 
@@ -26,82 +26,22 @@ function updateMenuItem(url)
 		menuHandle = chrome.contextMenus.create(menuItem);
 }
 
-function getImage(image, callback)
+function loadImage(url, callback)
 {
 	// Blink does not support XHR either for FTP or for data URIs
 	// http://code.google.com/p/chromium/issues/detail?id=46806
    	// http://code.google.com/p/chromium/issues/detail?id=75248
-   	
-    if (image.url.substr(0, 4) == "ftp:")
-    {
-    	callback(image, null);
-    }
-	else if (image.url.substr(0, 5) == "data:")
-	{
-		var BASE64_MARKER = ";base64,";
-		var raw;
-		if (image.url.indexOf(BASE64_MARKER) == -1)
-		{
-			var parts = image.url.split(',');
-			image.contentType = parts[0].split(':')[1];
-			raw = decodeURIComponent(parts[1]);
-		}
-		else
-		{
-			var parts = image.url.split(BASE64_MARKER);
-			image.contentType = parts[0].split(':')[1];
-    		raw = window.atob(parts[1]);
-		}
-		
-		image.size = raw.length;
-		var data = new Uint8Array(image.size);
-
-		for (var n = 0; n < image.size; n++)
-			data[n] = raw.charCodeAt(n);
-		
-		callback(image, data);
-    }
+    if (url.substr(0, 4) == "ftp:")
+    	ImageParser.loadData(null, callback);
+	else if (url.substr(0, 5) == "data:")
+		ImageParser.loadDataUrl(url, callback);
 	else
-	{
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET", image.url, true);
-		xhr.responseType = "arraybuffer";
-		xhr.onreadystatechange = function()
-		{
-			if (xhr.readyState == 4)
-			{
-				// 0 for local files
-				// 200 for HTTP
-				if (xhr.status == 200 || xhr.status == 0)
-				{
-					image.contentType = xhr.getResponseHeader("Content-Type");
-					var data = xhr.response ? new Uint8Array(xhr.response) : null;
-					if (data)
-					{
-						if (data.length >= 4)
-							image.size = data.length;
-						else
-							data = null;
-					}
-					callback(image, data);
-				}
-				else
-				{
-					callback(image, null);
-				}
-			}
-		};
-		
-		return xhr.send();
-	}
+		ImageParser.loadUrl(url, callback);
 }
 
-function decodeImage(image, data)
+function showImage(tabId)
 {
-	delete image.url;
-	ImageParser.parse(image, data);
-	alert(JSON.stringify(image));
-	console.log(image);
+	chrome.tabs.executeScript(tabId, { code: "Modal.open(ImgPropExtInfo);" });
 }
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) 
@@ -121,14 +61,15 @@ chrome.contextMenus.onClicked.addListener(function(info, tab)
 	updateMenuItem(null);
 	imageInfo = null;
 	
-	try
+	loadImage(image.url, function(data, contentType)
 	{
-		getImage(image, decodeImage);
-	}
-	catch (ex)
-	{
-		decodeImage(image, null);
-	}
+		ImageParser.parse(image, data, contentType);
+		console.log(JSON.stringify(image));
+		chrome.tabs.executeScript(tab.id,
+		{
+	        code: "var ImgPropExtInfo = " + JSON.stringify(image) + "; chrome.extension.sendMessage( { action: \"showImageInfo\", isLoaded: typeof ImgPropExtIsAlreadyInjected !== \"undefined\" });"
+	    });	
+	});
 });
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) 
@@ -137,6 +78,29 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
 	{
 		imageInfo = request.imageInfo;
 		updateMenuItem(imageInfo.url);
+	}
+	else if (request.action == "showImageInfo")
+	{
+		var tabId = sender.tab.id;
+		
+		// solution found at http://stackoverflow.com/a/8860891
+		if (request.isLoaded)
+		{
+			showImage(tabId);
+		}
+		else
+		{
+			chrome.tabs.insertCSS(tabId, { file: "css/modal.css" }, function() 
+			{
+				chrome.tabs.executeScript(tabId, { file: "js/modal.js" }, function() 
+				{
+					chrome.tabs.executeScript(tabId, { code: "var ImgPropExtIsAlreadyInjected = true;" }, function()
+					{
+						showImage(tabId);
+					});
+				});
+			});
+		}
 	}
 });
 

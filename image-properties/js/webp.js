@@ -86,7 +86,7 @@ var WebPParser =
 			else if (type == 0x5650384c) // EXIF
 			{
 				var data1 = data.subarray(offset, offset + size);
-				var view1 =	new DataView(data.buffer, offset, size);
+				var view1 = new DataView(data.buffer, offset, size);
 				
 				// heavily untested because I did not find any WebP image with Exif info on the web
 				ExifParser.parse(image, data1, view1);

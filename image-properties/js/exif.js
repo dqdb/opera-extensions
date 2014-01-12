@@ -39,9 +39,9 @@ var ExifParser =
 		}
 		
 		// phase 3: composite values
-		for (var name in ExifParser.Composite)
+		for (var name in ExifParser.composite)
 		{
-			var tag = ExifParser.Composite[name];
+			var tag = ExifParser.composite[name];
 			if (tag.composite && tag.format)
 			{
 				var item = ExifParser.createItem(tag, null, image, data, view, endian);
@@ -58,9 +58,10 @@ var ExifParser =
 			if (!item.text || item.tag.hidden)
 				continue;
 
+			ExifParser.initializeTag(item.tag);
 			var info = 
 			{
-				name: item.name,
+				caption: item.tag.caption,
 				text: item.text,
 				link: item.link
 			};
@@ -235,6 +236,26 @@ var ExifParser =
 	{
 		// filled by initialize
 	},
+	
+	initializeTag: function(tag)
+	{
+		if (tag.caption)
+			return;
+		
+		if (tag.values)
+		{
+			for (value1 in tag.values)
+			{
+				var value = chrome.i18n.getMessage(tag.name + "_" + value1);
+				if (value)
+					tag.values[value1] = value;
+			}
+		}
+		
+		tag.caption = chrome.i18n.getMessage(tag.name) || tag.name;
+		delete tag.name;
+		
+	},
 		
 	initialize: function(groups)
 	{
@@ -246,17 +267,6 @@ var ExifParser =
 			{
 				var tag = group[tag1];
 				tag.name = group1 + tag.id;
-				if (tag.values)
-				{
-					for (value1 in tag.values)
-					{
-						var value = chrome.i18n.getMessage(tag.name + "_" + value1);
-						if (value)
-							tag.values[value1] = value;
-					}
-				}
-				
-				tag.name = chrome.i18n.getMessage(tag.name) || tag.name;
 				if (tag.id.indexOf(".") == -1)
 					tag.id = group2 + tag.id;
 				
@@ -287,8 +297,9 @@ var ExifParser =
 				if (tag.hidden)
 					continue;
 				
+				ExifParser.initializeTag(tag);
 				var id = tag.id.replace(point, "");
-				messages[id] = { message: tag.name };
+				messages[id] = { message: tag.caption };
 				if (tag.values)
 				{
 					for (value1 in tag.values)

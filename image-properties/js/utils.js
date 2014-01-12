@@ -59,12 +59,12 @@ if (!Math.trunc)
 	};
 }
 
-Number.prototype.removeTrailingZeros = /\.?0+$/;
+Number.removeTrailingZeros = /\.?0+$/;
 
 Number.prototype.toFormatted = function(digits)
 {
 	var value = this.toFixed(digits);
-	return value.indexOf(".") == -1 ? value : value.replace(Number.prototype.removeTrailingZeros, "");
+	return value.indexOf(".") == -1 ? value : value.replace(Number.removeTrailingZeros, "");
 };
 
 DataView.prototype.getUrat32 = function(offset, endian)

@@ -1,7 +1,7 @@
 // Image Properties browser extension
 // copyright (c) 2014 dqdb
 
-var strings = {};
+var Strings = {};
 
 (function()
 {
@@ -14,6 +14,6 @@ var strings = {};
 	for (var n = 0; n < names.length; n++)
 	{
 		var name = names[n];
-		strings[name] = chrome.i18n.getMessage(name) || name;
+		Strings[name] = chrome.i18n.getMessage(name) || name;
 	}
 })();

@@ -46,9 +46,9 @@ var ExifTags = (function()
 		if (coordinate.length != 3)
 			return null;
 		
-		var degrees = coordinate[0].simplify();
-		var minutes = coordinate[1].simplify();
-		var seconds = coordinate[2].simplify();
+		var degrees = coordinate[0];
+		var minutes = coordinate[1];
+		var seconds = coordinate[2];
 		
 		var s = coordinateRef + degrees.toFormatted(3) + "°";
 		if (minutes.a || seconds.a)
@@ -101,7 +101,7 @@ var ExifTags = (function()
 	{
 		if (typeof value === "number")
 		{
-			if (value <= 1 / 4)
+			if (value > 0 && value <= 1 / 4)
 				return "1/" + Math.floor(1 / value + 0.5);
 			else
 				return value.toFormatted(2);
@@ -267,16 +267,16 @@ var ExifTags = (function()
 			}),
 			0x8822: simple("ExposureProgram",
 			{
-	            0: "Not defined",
-	            1: "Manual",
-	            2: "Program",
-	            3: "Aperture priority",
-	            4: "Shutter priority",
-	            5: "Creative program",
-	            6: "Action program",
-	            7: "Portrait mode",
-	            8: "Landscape mode",
-	            9: "Bulb" // ExifTool
+				0: "Not defined",
+				1: "Manual",
+				2: "Program",
+				3: "Aperture priority",
+				4: "Shutter priority",
+				5: "Creative program",
+				6: "Action program",
+				7: "Portrait mode",
+				8: "Landscape mode",
+				9: "Bulb" // ExifTool
 			}),
 				
 			// 0x8824: simple("SpectralSensitivity"),
@@ -345,7 +345,7 @@ var ExifTags = (function()
 			0x9203: simple("BrightnessValue"),
 			0x9204: simple("ExposureBiasValue", function(value)
 			{
-				return formatFraction(value.toDouble()) + " " + strings.ExifExposureValue;
+				return formatFraction(value.toDouble()) + " " + Strings.ExifExposureValue;
 			}),
 			0x9205: simple("MaxApertureValue", function(value)
 			{
@@ -355,7 +355,7 @@ var ExifTags = (function()
 			0x9206: simple("SubjectDistance", function(value)
 			{
 				if (value.a == 0)
-					return strings.ExifUnknown;
+					return Strings.ExifUnknown;
 				else if (value.a == 0xffffffff)
 					return "∞";
 				else
@@ -509,8 +509,8 @@ var ExifTags = (function()
 					{
 						var colors = 
 						[ 
-							strings.ColorRed, strings.ColorGreen, strings.ColorBlue,  
-							strings.ColorCyan, strings.ColorMagenta, strings.ColorYellow, strings.ColorWhite
+							Strings.ColorRed, Strings.ColorGreen, Strings.ColorBlue,  
+							Strings.ColorCyan, Strings.ColorMagenta, Strings.ColorYellow, Strings.ColorWhite
 						];
 						var offset = 4;
 						for (var y = 0; y < rows; y++)
