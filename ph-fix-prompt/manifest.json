@@ -1,0 +1,28 @@
+{
+	"name": "ph-fix-prompt",
+	"description": "ph-fix-prompt",
+	"web_accessible_resources": [ "prompt.js" ],
+	"content_scripts": 
+	[ 
+		{ 
+			"matches": 
+			[
+				"http://prohardver.hu/muvelet/hsz/*", 
+				"http://mobilarena.hu/muvelet/hsz/*",
+				"http://itcafe.hu/muvelet/hsz/*",
+				"http://gamepod.hu/muvelet/hsz/*",
+				"http://logout.hu/muvelet/hsz/*",
+
+				"http://prohardver.hu/muvelet/privat/*", 
+				"http://mobilarena.hu/muvelet/privat/*",
+				"http://itcafe.hu/muvelet/privat/*",
+				"http://gamepod.hu/muvelet/privat/*",
+				"http://logout.hu/muvelet/privat/*" 
+			], 
+			"js": [ "content.js" ],
+			"run_at": "document_start" 
+		}
+	],
+	"manifest_version": 2,
+	"version": "1.0.0"
+}

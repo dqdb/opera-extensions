@@ -1,0 +1,11 @@
+{
+	"name": "google-search-fix",
+	"description": "google-search-fix",
+	"manifest_version": 2,
+	"background": 
+	{
+		"scripts": ["background.js"]
+	},
+	"permissions": [ "webRequest", "webRequestBlocking", "<all_urls>" ],
+	"version": "1.0.0"
+}
