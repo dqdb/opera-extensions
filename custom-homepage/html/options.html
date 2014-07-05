@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Classic Zoom Settings</title>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/options.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/options.css">
+	
+</head>
+<body>
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Custom Home Page</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav">
+  				<li class="active"><a href="#settings">Settings</a></li>
+  				<li><a href="#history">History</a></li>
+  				<li><a href="#about">About</a></li>
+        </ul>
+        <p class="navbar-text navbar-right">
+          vesion 1.0.0
+        </p>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  
+	<div class="container">
+		<div class="tab-content">
+			<div class="tab-pane active" id="settings">
+				<div class="row col-md-6">
+          <h3>Settings</h3>
+          
+          <form role="form">
+            <div class="form-group">
+              <label for="settings-address">Address</label>
+              <input type="text" class="form-control" id="settings-address" placeholder="Enter address or leave blank">
+            </div>
+            <button class="btn btn-primary settings-address-current-url" url="">Use blank</button>
+            <button class="btn btn-primary settings-address-current-url" url="opera://startpage/#speeddial">Use Speed Dial</button>
+            <div class="btn-group" id="settings-address-current">
+							<button class="btn btn-info dropdown-toggle" data-toggle="dropdown">Use current pages <span class="caret"></span></button>
+							<ul class="dropdown-menu" id="settings-address-current-list">
+								<!-- row template -->
+								<li id="settings-address-current-template" hidden>
+                  <a href="#" class="settings-address-current-url"></a>
+								</li>
+							</ul>
+						</div>
+          </form>
+				</div>
+			</div>
+			<div class="tab-pane" id="history">
+				<h3>version 1.0.0 <small>2014-07-05</small></h3>
+				<ul>
+					<li>initial release</li>
+				</ul>
+			</div>
+			<div class="tab-pane" id="about">
+        <h3>Custom Home Page</h3>
+        <p>Copyright &copy; 2014 <a href="https://github.com/dqdb/opera-extensions">dqdb</a></p>
+        <p>Extension icon copyright by <a href="http://www.visualpharm.com/">VisualPharm</a></p>
+        <div class="alert alert-info">Yes, I know that this options page is an overkill for this simple extension. I've created this template a long time ago for a more complex extension and it is easier to clone that instead of creating a new one :)</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
