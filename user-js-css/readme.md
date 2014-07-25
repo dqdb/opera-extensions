@@ -44,12 +44,12 @@ This method works also for Opera 12 CSS files.
 
  into this:
 
-        "matches": [ "*://facebook.com/*" ], [/C][/M]
+        "matches": [ "*://facebook.com/*" ], 
 
  Convert this rule:
 
         @-moz-document url-prefix(http://www.google.com),
-                       url-prefix(http://images.google.com),[/C][/M]
+                       url-prefix(http://images.google.com),
 
  into this:
 
