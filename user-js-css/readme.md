@@ -13,7 +13,7 @@ This is an empty template for custom user JS and CSS scripts. Install this as un
 ##New user CSS
 1. save the *.css* file in the *css* folder of the extension
 2. open the *manifest.json* file in a text editor
-3. duplicate the *example user CSS* block in the *content_scripts* part of the file, remove comment slashes (*//*). Add trailing command, if required.
+3. duplicate the *example user CSS* block in the *content_scripts* part of the file, remove comment slashes (*//*). Add trailing comma, if required.
 3. enumerate all pages and/or subpages in ``matches`` value where you want to work your CSS rules
 4. set the ``css`` to the filename
 5. open Opera, press **Ctrl+Shift+E**, look up **User JS and CSS extension** and click **Reload**
@@ -74,7 +74,7 @@ This method works also for Opera 12 CSS files.
 #Adding user JS
 1. save the file in the *js* folder
 2. open the *manifest.json* file in a text editor
-3. duplicate the *example user JS* block in the *content_scripts* part of the file, remove comment slashes (*//*). Add trailing command, if required.
+3. duplicate the *example user JS* block in the *content_scripts* part of the file, remove comment slashes (*//*). Add trailing comma, if required.
 4. open the previously downloaded *.js* file and enumerate all ``@include`` rules separating by commas in the ``matches`` value
 5. *opttional>* specify a ``runAt`` value for the script to modify its execution time (details can be fouund [here](https://developer.chrome.com/extensions/content_scripts.html)). You should set this value to ``document_start`` for **.js* scripts, and ``document_end`` or ``document_idle`` for **.user.js* scripts
 6. open Opera, press **Ctrl+Shift+E**, look up **User JS and CSS extension** and click **Reload**
