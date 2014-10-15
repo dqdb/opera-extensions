@@ -31,6 +31,12 @@ window.addEventListener("load", function (e)
 		$(this).tab('show');
 	})
 	
+	$("#settings-navlist a").click(function (e)
+	{
+		e.preventDefault();
+		$(this).tab('show');
+	});
+		
 	$(".settings-address-current-url").click(function (e)
 	{
 		var url = $(this).attr("url");
