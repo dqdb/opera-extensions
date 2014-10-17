@@ -1,7 +1,7 @@
 Close All Tabs
 Copyright (c) 2014 dqdb
 
-Replace Speed Dial with a home page or a blank page.
+Closes all opened tabs.
 
 Extension icon designed by Jordan Marshall
 http://thenounproject.com/term/close/7294/
