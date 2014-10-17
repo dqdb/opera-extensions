@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Update Notification Settings</title>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/settings.js"></script>
+	<script type="text/javascript" src="../js/options.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/options.css">
+	
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" data-i18n="extensionName">Update Notification</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav">
+  				<li class="active"><a href="#settings" data-i18n="optionsTabSettings">Settings</a></li>
+  				<li><a href="#history" data-i18n="optionsTabHistory">History</a></li>
+  				<li><a href="#about" data-i18n="optionsTabAbout">About</a></li>
+        </ul>
+        <p class="navbar-text navbar-right">
+          <span data-i18n="optionsVersionTitle">version</span> <span data-i18n="extensionVersion">0.0.1</span>
+        </p>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </nav>
+
+	<div class="tab-content">
+		<div class="tab-pane active" id="settings">
+    	<div class="container">
+				<div class="row">
+          <form role="form" class="form-horizontal">
+            <div class="form-group">
+              <label for="settings-check-interval" class="control-label col-sm-3" data-i18n="settingsCheckInterval">Check for updates in background</label>
+              <div class="col-sm-3">
+                <select class="form-control" id="settings-check-interval">
+                  <option value="0" data-i18n="settingsCheckIntervalNever">never</option>
+                  <option value="10" data-i18n="settingsCheckInterval10minutes">every 10 minutes</option>
+                  <option value="30" data-i18n="settingsCheckInterval30minutes">every 30 minutes</option>
+                  <option value="60" data-i18n="settingsCheckInterval1hour">every hour</option>
+                  <option value="180" data-i18n="settingsCheckInterval3hours">every 3 hours</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="settings-display-timeout" class="control-label col-sm-3" data-i18n="settingsDisplayTimeout">Display popup notification</label>
+              <div class="col-sm-3">
+                <select class="form-control" id="settings-display-timeout" data-toggle="tooltip" data-placement="top" title="You cannot modify this value because current implementation of web notifications in Opera closes popups automatically after 5 seconds." data-title-i18n="settingsDisplayTimeoutTitle">
+<!--                  <option value="0" data-i18n="settingsDisplayTimeoutUntilClosed">until closed</option>-->
+                  <option value="5" data-i18n="settingsDisplayTimeout5seconds">for 5 seconds</option>
+<!--                  <option value="10" data-i18n="settingsDisplayTimeout10seconds">for 10 seconds</option>
+                  <option value="30" data-i18n="settingsDisplayTimeout30seconds">for 30 seconds</option>
+                  <option value="60" data-i18n="settingsDisplayTimeout1minute">for a minute</option>-->
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-primary col-sm-offset-3" id="settings-check-now" data-i18n="settingsCheckForUpdatesNow">Check for updates now</button>
+          </form>
+				</div>
+			</div>
+  	</div>
+		<div class="tab-pane" id="history">
+    	<div class="container">
+				<div class="row">
+          <div class="col-md-12">
+    				<h3>version 1.0.0 <small>2014-10-15</small></h3>
+    				<ul>
+    					<li>initial release</li>
+    				</ul>
+    			</div>
+  			</div>
+  		</div>
+  	</div>
+		<div class="tab-pane" id="about">
+    	<div class="container">
+				<div class="row">
+          <div class="col-md-12">
+            <p>Copyright &copy; 2014 <a href="https://github.com/dqdb/opera-extensions">dqdb</a></p>
+            <p>Extension icon copyright by <a href="http://icons8.com/">Icons8</a></p>
+    		</div>
+  		</div>
+		</div>
+	</div>
+</body>
+</html>

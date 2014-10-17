@@ -1,0 +1,33 @@
+body {
+  padding-top: 65px;
+}
+
+.jumbotron {
+  margin-top: 80px;
+}
+
+.btn-toolbar {
+  padding-bottom: 24px;
+}
+
+.navbar-default {
+	background-color: #f8f8f8;
+	border-color: #eeeeee;
+}
+
+h2 {
+  padding-bottom: 40px;
+}
+
+#close {
+  margin-top: 40px;
+}
+
+#icon {
+  float: right;
+}
+
+#previous-version {
+  font-weight: bold;
+}
+

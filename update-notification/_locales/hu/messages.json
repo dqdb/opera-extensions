@@ -1,0 +1,46 @@
+﻿{
+	"extensionName":
+	{
+		"message": "Update Notification",
+		"description": "Extension name"
+	},
+
+	"extensionDescription":
+	{
+		"message": "Értesülj az Opera automatikus frissítéseiről",
+		"description": "Extension description"
+	},
+
+	"updateAvailableNotification":
+	{
+		"message": "Új Opera verzió tölthető le.",
+		"description": "Notification text"
+	},
+	
+	"optionsVersionTitle": { "message": "verzió:" },
+	"optionsTabSettings": { "message": "Beállítások" },
+	"optionsTabhistory": { "message": "Változások" },
+	"optionsTabAbout": { "message": "Névjegy" },
+	
+	"settingsCheckInterval": { "message": "Frissítések keresése a háttérben" },
+	"settingsCheckIntervalNever": { "message": "soha" },
+	"settingsCheckInterval10minutes": { "message": "10 percenként" },
+	"settingsCheckInterval30minutes": { "message": "fél óránként" },
+	"settingsCheckInterval1hour": { "message": "óránként" },
+	"settingsCheckInterval3hours": { "message": "3 óránként" },
+		
+	"settingsDisplayTimeout": { "message": "Felugró értesítések" },
+	"settingsDisplayTimeoutTitle": { "message": "Ez a beállítás nem módosítható, mert az Opera jelenlegi megvalósítása 5 másodperc után bezárja az értesítéseket." },
+	"settingsDisplayTimeoutUntilClosed": { "message": "bezárásig" },
+	"settingsDisplayTimeout5seconds": { "message": "5 másodpercig" },
+	"settingsDisplayTimeout10seconds": { "message": "10 másodpercig" },
+	"settingsDisplayTimeout30seconds": { "message": "fél percig" },
+	"settingsDisplayTimeout1minute": { "message": "egy percig" },
+
+	"settingsCheckForUpdatesNow": { "message": "Frissítések keresése" },
+	
+	"updatedInstalledVersion" : { "message": "Az Opera frissült a <span id=\"installed-version\"></span> verzióra" },
+	"updatedPreviousVersion" : { "message": "Előző verzió: <span id=\"previous-version\"></span>" },
+	"updatedChangeLog" : { "message": "Kattints <a href=\"#\" id=\"changelog-link\">ide</a> az Opera <span id=\"changelog-version\"></span> változásainak megtekintéséhez" },
+	"updatedCloseButton": { "message": "Bezárás" }
+}

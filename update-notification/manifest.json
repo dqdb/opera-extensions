@@ -1,0 +1,29 @@
+{
+	"name": "__MSG_extensionName__",
+	"description": "__MSG_extensionDescription__",
+	"permissions": [ "storage", "notifications", "alarms", "https://ftp.opera.com/*" ],
+	"version": "1.0.0",
+	"background": 
+	{
+		"scripts": [ "js/settings.js", "js/background.js" ]
+  	},
+  	"icons":
+   	{
+		"16": "images/icon16.png",
+		"48": "images/icon48.png",
+		"128": "images/icon128.png"   	
+	},
+	"browser_action":
+	{
+    	"default_icon":
+    	{
+        	"19": "images/toolbar-normal19.png",
+            "38": "images/toolbar-normal38.png"
+        },
+        "default_title": "__MSG_extensionName__"
+    },   	
+	"default_locale": "en",
+	"options_page": "html/options.html",
+	"web_accessible_resources": [ "html/updated.html", "images/notification.png" ],
+	"manifest_version": 2
+}

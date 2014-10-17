@@ -1,0 +1,52 @@
+﻿{
+	"extensionVersion":
+	{
+		"message": "1.0.0",
+		"description": "Extension version (do not include this string in localized resources)"
+	},
+
+	"extensionName":
+	{
+		"message": "Update Notification",
+		"description": "Extension name"
+	},
+
+	"extensionDescription":
+	{
+		"message": "Be notified of Opera automatic updates",
+		"description": "Extension description"
+	},
+
+	"updateAvailableNotification":
+	{
+		"message": "A new Opera version is available to download.",
+		"description": "Notification text"
+	},
+	
+	"optionsVersionTitle": { "message": "version" },
+	"optionsTabSettings": { "message": "Settings" },
+	"optionsTabhistory": { "message": "History" },
+	"optionsTabAbout": { "message": "About" },
+	
+	"settingsCheckInterval": { "message": "Check for updates in background" },
+	"settingsCheckIntervalNever": { "message": "never" },
+	"settingsCheckInterval10minutes": { "message": "every 10 minutes" },
+	"settingsCheckInterval30minutes": { "message": "every 30 minutes" },
+	"settingsCheckInterval1hour": { "message": "every hour" },
+	"settingsCheckInterval3hours": { "message": "every 3 hours" },
+		
+	"settingsDisplayTimeout": { "message": "Display popup notification" },
+	"settingsDisplayTimeoutTitle": { "message": "You cannot modify this value because current implementation of web notifications in Opera closes popups automatically after 5 seconds." },
+	"settingsDisplayTimeoutUntilClosed": { "message": "until closed" },
+	"settingsDisplayTimeout5seconds": { "message": "for 5 seconds" },
+	"settingsDisplayTimeout10seconds": { "message": "for 10 seconds" },
+	"settingsDisplayTimeout30seconds": { "message": "for 30 seconds" },
+	"settingsDisplayTimeout1minute": { "message": "for a minute" },
+
+	"settingsCheckForUpdatesNow": { "message": "Check for updates now" },
+	
+	"updatedInstalledVersion" : { "message": "Opera has been updated to <span id=\"installed-version\"></span>" },
+	"updatedPreviousVersion" : { "message": "Previous version was <span id=\"previous-version\"></span>" },
+	"updatedChangeLog" : { "message": "Take a look at the Opera <span id=\"changelog-version\"></span> <a href=\"#\" id=\"changelog-link\">changelog</a>" },
+	"updatedCloseButton": { "message": "Close" }
+}

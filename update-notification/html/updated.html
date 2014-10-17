@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Update Notification</title>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/updated.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/updated.css">
+	
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+    </div><!-- /.container -->
+  </nav>
+
+	<div class="container">
+		<div class="row">
+      <div class="jumbotron">
+        <img src="../images/updated.png" id="icon">
+        <h2 data-i18n="updatedInstalledVersion">Opera has been updated to <span id="installed-version"></span></h2>
+        <p  data-i18n="updatedchangeLog">Take a look at the Opera <span id="changelog-version"></span> <a href="#" id="changelog-link">changelog</a>
+        <p data-i18n="updatedPreviousVersion">Previous version was <span id="previous-version"></span></p>
+        <p><a class="btn btn-danger btn-lg" id="close" role="button" data-i18n="updatedCloseButton">Close</a></p>
+      </div>
+    </div>
+	</div>
+</body>
+</html>
