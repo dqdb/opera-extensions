@@ -3,7 +3,7 @@ Copyright (c) 2014 dqdb
 
 Be notified of Opera automatic updates.
 
-Icons copyright by Icons8 (http://icons8.com/)
-http://icons8.com/icons/#!/769/available-updates
+Icons are based on Arrow icon designed by Simple Icons (http://www.thenounproject.com/SimpleIcons) from the Noun Project (http://www.thenounproject.com)
+
 
 
