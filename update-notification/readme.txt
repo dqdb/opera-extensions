@@ -1,5 +1,7 @@
 Project moved to https://github.com/rtws/update-notification
 
+---------------------------------------------------------------------
+
 Update Notification
 Copyright (c) 2014 dqdb
 
