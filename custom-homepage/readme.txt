@@ -1,3 +1,7 @@
+Project moved to https://github.com/rtws/custom-homepage
+
+---------------------------------------------------------------------
+
 Custom Home Page
 Copyright (c) 2014 dqdb
 
